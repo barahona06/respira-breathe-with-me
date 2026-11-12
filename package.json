@@ -1,0 +1,75 @@
+{
+  "build": {
+    "appId": "app.respira.desktop",
+    "asar": true,
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "dist/**",
+      "node_modules/**",
+      "!node_modules/@smartspectra/node-sdk-*/**",
+      "!node_modules/@smartspectra/node-sdk/scripts/**",
+      "!node_modules/@smartspectra/node-sdk/test/**",
+      "!node_modules/@smartspectra/node-sdk/samples/**",
+      "!node_modules/@smartspectra/node-sdk/prebuilds/**"
+    ],
+    "linux": {
+      "category": "Utility",
+      "extraResources": [
+        {
+          "from": "node_modules/@smartspectra/node-sdk-linux-${arch}/",
+          "to": "smartspectra"
+        }
+      ],
+      "target": "AppImage"
+    },
+    "mac": {
+      "category": "public.app-category.healthcare-fitness",
+      "entitlements": "build/entitlements.mac.plist",
+      "entitlementsInherit": "build/entitlements.mac.plist",
+      "extendInfo": {
+        "NSCameraUsageDescription": "Respira uses your camera to measure your pulse and breathing without contact during a guided breathing session."
+      },
+      "extraResources": [
+        {
+          "from": "node_modules/@smartspectra/node-sdk-darwin-${arch}/",
+          "to": "smartspectra"
+        }
+      ],
+      "hardenedRuntime": true
+    },
+    "productName": "Respira",
+    "win": {
+      "extraResources": [
+        {
+          "from": "node_modules/@smartspectra/node-sdk-win32-${arch}/",
+          "to": "smartspectra"
+        }
+      ],
+      "target": "nsis"
+    }
+  },
+  "dependencies": {
+    "@smartspectra/node-sdk": "^3.5.0"
+  },
+  "description": "Respira — a bilingual guided-breathing companion that responds to your real pulse and breathing, measured contactlessly through your camera with the Presage SmartSpectra SDK. Wellness only: not a medical device.",
+  "devDependencies": {
+    "electron": "45.3.0",
+    "electron-builder": "^26.18.0",
+    "esbuild": "^0.28.2"
+  },
+  "main": "main.js",
+  "name": "respira",
+  "private": true,
+  "scripts": {
+    "build": "esbuild src/renderer.js --bundle --outfile=dist/renderer.bundle.js --platform=browser --format=iife --log-level=warning",
+    "dist:linux": "npm run build && electron-builder --linux --x64",
+    "dist:mac": "npm run build && electron-builder --mac --arm64",
+    "dist:win": "npm run build && electron-builder --win --x64",
+    "start": "npm run build && electron .",
+    "test": "node --test test/guide.test.js test/i18n.test.js test/mock.test.js test/sdk-source.test.js"
+  },
+  "version": "0.1.0"
+}

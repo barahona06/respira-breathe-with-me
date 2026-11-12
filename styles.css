@@ -1,0 +1,212 @@
+/* Respira — calm, dark, breathing-room design. No external assets. */
+
+:root {
+  --bg: #0d1b1e;
+  --bg2: #123034;
+  --panel: #16323a;
+  --panel2: #1b3d44;
+  --text: #eef7f4;
+  --muted: #a8c4bd;
+  --teal: #7fd1c0;
+  --teal-dark: #3f9d8a;
+  --amber: #f2a65a;
+  --red: #e3635f;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  background: linear-gradient(160deg, var(--bg) 0%, var(--bg2) 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.hidden { display: none !important; }
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+}
+.brand { display: flex; align-items: baseline; gap: 10px; }
+.brand-mark { color: var(--teal); font-size: 22px; }
+.brand-name { font-size: 22px; font-weight: 700; letter-spacing: 0.4px; }
+.brand-tag { color: var(--muted); font-size: 13px; }
+
+.lang-switch button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  padding: 5px 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.lang-switch button:first-child { border-radius: 999px 0 0 999px; }
+.lang-switch button:last-child { border-radius: 0 999px 999px 0; border-left: none; }
+.lang-switch button.active { background: var(--teal); color: #08302a; border-color: var(--teal); }
+
+.screen {
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 10px 28px 40px;
+}
+
+h1 { font-size: 30px; margin: 12px 0 10px; }
+h2 { font-size: 19px; margin: 24px 0 8px; color: var(--teal); }
+.lead { font-size: 17px; line-height: 1.55; }
+p { line-height: 1.55; }
+.bullets { line-height: 1.6; padding-left: 22px; }
+.bullets li { margin: 6px 0; }
+
+.check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 12px 0;
+  cursor: pointer;
+  line-height: 1.45;
+}
+.check input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--teal-dark); }
+.check-main {
+  background: var(--panel);
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  font-weight: 600;
+}
+
+.banner {
+  border-radius: var(--radius);
+  padding: 13px 16px;
+  margin: 14px 0;
+  line-height: 1.5;
+  font-size: 14.5px;
+}
+.banner-medical { background: rgba(242, 166, 90, 0.14); border: 1px solid rgba(242, 166, 90, 0.55); }
+.banner-mock { background: rgba(227, 99, 95, 0.16); border: 1px solid rgba(227, 99, 95, 0.7); font-weight: 600; }
+.banner-warn { background: rgba(242, 166, 90, 0.14); border: 1px solid rgba(242, 166, 90, 0.55); }
+.banner-error { background: rgba(227, 99, 95, 0.16); border: 1px solid rgba(227, 99, 95, 0.7); }
+
+.hint-text { color: var(--amber); min-height: 20px; }
+.credits-note { color: var(--muted); font-size: 14px; max-width: 560px; }
+
+.btn {
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 11px 22px;
+  font-size: 15.5px;
+  cursor: pointer;
+}
+.btn:hover { filter: brightness(1.15); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.btn-primary { background: var(--teal-dark); border-color: var(--teal-dark); font-weight: 700; }
+.btn-danger { background: transparent; border-color: var(--red); color: #ffb3b0; margin-top: 18px; }
+
+.row { display: flex; gap: 12px; margin-top: 22px; }
+
+.pills { display: flex; gap: 10px; }
+.pills button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  padding: 9px 20px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.pills button.active { background: var(--teal); color: #08302a; font-weight: 700; border-color: var(--teal); }
+
+/* Live layout */
+.live-head { display: flex; justify-content: space-between; align-items: baseline; }
+.countdown { font-size: 19px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.live-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 0.75fr;
+  gap: 20px;
+  margin-top: 14px;
+  align-items: start;
+}
+
+.preview-wrap video {
+  width: 100%;
+  border-radius: var(--radius);
+  background: #000;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.hint-bar {
+  background: rgba(242, 166, 90, 0.18);
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin: 10px 0 0;
+  font-size: 14px;
+}
+#wave-canvas {
+  width: 100%;
+  height: 120px;
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: var(--radius);
+  margin-top: 12px;
+}
+.wave-legend { display: flex; gap: 8px; align-items: center; color: var(--muted); font-size: 13px; margin-top: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.dot-breath { background: var(--teal); }
+.dot-pulse { background: var(--amber); }
+
+.guide-wrap { text-align: center; }
+.guide-stage {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  margin: 6px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 3px solid var(--amber);
+  opacity: 0.4;
+}
+#guide-circle {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #a9e8da, var(--teal-dark));
+  box-shadow: 0 0 60px rgba(127, 209, 192, 0.35);
+  transition: transform 120ms linear;
+}
+#guide-phase {
+  position: absolute;
+  font-size: 21px;
+  font-weight: 700;
+  color: #06302a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+.guide-help { color: var(--muted); }
+.status-line { font-weight: 600; color: var(--teal); min-height: 22px; }
+
+.readouts { display: flex; flex-direction: column; gap: 12px; }
+.card {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+}
+.card-label { color: var(--muted); font-size: 13.5px; text-transform: uppercase; letter-spacing: 0.6px; }
+.card-value { font-size: 30px; font-weight: 700; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.card-value small { font-size: 14px; color: var(--muted); font-weight: 400; }
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
