@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Camera access for getUserMedia. -->
+  <key>com.apple.security.device.camera</key>
+  <true/>
+  <!-- The bundled SmartSpectra dylibs are signed by Presage, not by this
+       app's team identity; library validation must be relaxed (or the
+       dylibs re-signed) for the hardened runtime to load them. -->
+  <key>com.apple.security.cs.disable-library-validation</key>
+  <true/>
+  <!-- Standard Electron / V8 allowances under the hardened runtime. -->
+  <key>com.apple.security.cs.allow-jit</key>
+  <true/>
+  <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+  <true/>
+</dict>
+</plist>
